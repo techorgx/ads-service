@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package com.project.ads.api.v1;
+
+option java_multiple_files = true;
+option java_outer_classname = "AdsDataApiProto";
+option java_package = "com.project.ads.api.v1";
+
+service AdsApi {
+  rpc CreateAd(CreateAdRequest) returns (CreateAdResponse);
+}
+
+message CreateAdRequest {
+  string title = 1;
+  string description = 2;
+  double price = 3;
+  string owner = 4;
+}
+
+message CreateAdResponse {
+  string id = 1;
+}
