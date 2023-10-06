@@ -60,8 +60,10 @@
                             <goal>compile-custom</goal>
                         </goals>
                         <configuration>
+                            <!--suppress UnresolvedMavenProperty -->
                             <protocArtifact>com.google.protobuf:protoc:${protobuf.version}:exe:${os.detected.classifier}</protocArtifact>
                             <pluginId>grpc-java</pluginId>
+                            <!--suppress UnresolvedMavenProperty -->
                             <pluginArtifact>io.grpc:protoc-gen-grpc-java:${java.grpc.version}:exe:${os.detected.classifier}</pluginArtifact>
                             <protocPlugins>
                                 <protocPlugin>
@@ -81,6 +83,7 @@
                             <goal>compile-custom</goal>
                         </goals>
                         <configuration>
+                            <!--suppress UnresolvedMavenProperty -->
                             <protocArtifact>com.google.protobuf:protoc:${protobuf.version}:exe:${os.detected.classifier}</protocArtifact>
                             <outputDirectory>${project.build.directory}/generated-sources/protobuf/kotlin</outputDirectory>
                             <pluginId>kotlin</pluginId>
