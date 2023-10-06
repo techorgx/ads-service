@@ -13,7 +13,7 @@
     <artifactId>ads-service</artifactId>
     <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
-    <name>customer-service</name>
+    <name>ads-service</name>
     <description>creates and provision ads</description>
 
 
