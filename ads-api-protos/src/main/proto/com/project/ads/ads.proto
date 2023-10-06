@@ -8,6 +8,7 @@ option java_package = "com.project.ads.api.v1";
 
 service AdsApi {
   rpc CreateAd(CreateAdRequest) returns (CreateAdResponse);
+  rpc GetAd(GetAdRequest) returns (GetAdResponse);
 }
 
 message CreateAdRequest {
@@ -19,4 +20,16 @@ message CreateAdRequest {
 
 message CreateAdResponse {
   string id = 1;
+}
+
+message GetAdRequest {
+  string id = 1;
+}
+
+message GetAdResponse {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  double price = 4;
+  string owner = 5;
 }
