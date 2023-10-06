@@ -33,6 +33,7 @@
                     </execution>
                 </executions>
             </plugin>
+            <!--Compile proto into classes-->
             <plugin>
                 <groupId>org.xolstice.maven.plugins</groupId>
                 <artifactId>protobuf-maven-plugin</artifactId>
