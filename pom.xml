@@ -10,8 +10,8 @@
     </parent>
     <groupId>com.project.ads</groupId>
     <artifactId>ads-service</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
     <packaging>pom</packaging>
+    <version>0.0.1-SNAPSHOT</version>
     <name>customer-service</name>
     <description>creates and provision ads</description>
 
