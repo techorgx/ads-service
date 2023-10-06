@@ -15,6 +15,7 @@
     <name>customer-service</name>
     <description>creates and provision ads</description>
 
+
     <modules>
         <module>ads-api-protos</module>
         <module>persistence</module>

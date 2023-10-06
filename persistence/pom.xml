@@ -10,6 +10,7 @@
     </parent>
 
     <artifactId>persistence</artifactId>
+    <packaging>jar</packaging>
 
     <properties>
         <maven.compiler.source>18</maven.compiler.source>
