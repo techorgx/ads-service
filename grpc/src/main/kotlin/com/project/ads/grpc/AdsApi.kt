@@ -9,10 +9,9 @@ import com.project.ads.service.AdsService
 import org.lognet.springboot.grpc.GRpcService
 
 @GRpcService
-class AdsApi (
-    private val adsService: AdsService
+class AdsApi(
+    private val adsService: AdsService,
 ) : AdsApiGrpcKt.AdsApiCoroutineImplBase() {
-
     override suspend fun createAd(request: CreateAdRequest): CreateAdResponse {
         return adsService.createAd(request)
     }
