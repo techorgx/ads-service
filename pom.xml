@@ -20,6 +20,7 @@
     <modules>
         <module>ads-api-protos</module>
         <module>grpc</module>
+        <module>persistence</module>
     </modules>
 
     <profiles>
