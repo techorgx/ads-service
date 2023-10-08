@@ -9,6 +9,7 @@ option java_package = "com.project.ads.api.v1";
 service AdsApi {
   rpc CreateAd(CreateAdRequest) returns (CreateAdResponse);
   rpc GetAd(GetAdRequest) returns (GetAdResponse);
+  rpc UpdateAdStatus(UpdateAdStatusRequest) returns (UpdateAdStatusResponse);
 }
 
 message CreateAdRequest {
@@ -34,4 +35,13 @@ message GetAdResponse {
   double price = 4;
   string owner = 5;
   string status = 6;
+}
+
+message UpdateAdStatusRequest {
+  string id = 1;
+  string status = 2;
+}
+
+message UpdateAdStatusResponse {
+  string id = 1;
 }
