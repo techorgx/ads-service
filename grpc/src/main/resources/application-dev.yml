@@ -6,6 +6,12 @@ aws:
     endpoint: "http://localhost:8000"
     region: "us-west-2"
 
+security:
+  token:
+    enabled: true
+    bypass: "test"
+    keyFilePath: "secrets/local-customer-service-private.key"
+
 server:
   error:
     include-stacktrace: never

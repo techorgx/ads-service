@@ -17,6 +17,7 @@
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <java-jwt.version>0.9.1</java-jwt.version>
     </properties>
 
     <dependencies>
@@ -24,6 +25,11 @@
             <groupId>com.project.ads</groupId>
             <artifactId>ads-api-protos</artifactId>
             <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>io.jsonwebtoken</groupId>
+            <artifactId>jjwt</artifactId>
+            <version>${java-jwt.version}</version>
         </dependency>
     </dependencies>
 
