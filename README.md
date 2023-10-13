@@ -97,7 +97,7 @@ Use local-ads-service-public.pem to encode the token on local machine.
 
 Use Authorization in Metadata
 ```json
-{"Authorization": "eyJhbGciOiJIUzI1NiJ9.eyJzZXJ2aWNlSWQiOiJsb2NhbCJ9.incamOSMaNllfoIWYtemE_X9M-vvf3tTTRrjDkE7bQs"}
+{"Authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJKb2huIERvZSJ9.tnUtI9DjJA2wUiHs211LtaP7O1ur17cutWddXm_nNcM"}
 ```
 Or you can use client id test to bypass authentication on local machine 
 ```json
