@@ -29,6 +29,5 @@
             <artifactId>aws-java-sdk-sts</artifactId>
             <version>${amazonaws.version}</version>
         </dependency>
-
     </dependencies>
 </project>
