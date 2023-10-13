@@ -10,7 +10,7 @@ security:
   token:
     enabled: true
     bypass: "test"
-    keyFilePath: "secrets/local-customer-service-private.key"
+    keyFilePath: "secrets/local-ads-service-private.key"
 
 server:
   error:

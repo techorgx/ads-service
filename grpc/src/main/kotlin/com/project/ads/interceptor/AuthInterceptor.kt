@@ -1,11 +1,13 @@
 package com.project.ads.interceptor
 
+import io.fusionauth.jwt.Verifier
+import io.fusionauth.jwt.domain.JWT
+import io.fusionauth.jwt.hmac.HMACVerifier
 import io.grpc.Metadata
 import io.grpc.ServerCall
 import io.grpc.ServerCallHandler
 import io.grpc.ServerInterceptor
 import io.grpc.Status
-import io.jsonwebtoken.Jwts
 import org.apache.logging.log4j.LogManager
 import org.apache.logging.log4j.Logger
 import org.lognet.springboot.grpc.GRpcGlobalInterceptor
@@ -33,31 +35,37 @@ class AuthInterceptor(
         val activeProfiles = environment.activeProfiles
         val bypassClientId = metadata.get(Metadata.Key.of(CLIENT_ID_HEADER, Metadata.ASCII_STRING_MARSHALLER))
 
-        if (!enabled || bypass == bypassClientId && listOf(*activeProfiles).contains("local")) {
-            nextChain.startCall(serverCall, metadata)
+        if (!enabled || (bypass == bypassClientId && listOf(*activeProfiles).contains("local"))) {
+            logger.info("Authentication bypassed, enabled: $enabled, bypass: $bypassClientId")
+            return nextChain.startCall(serverCall, metadata)
         }
 
-        if (jwtHeader.isNullOrEmpty() || !validateToken(jwtHeader)) {
-            serverCall.close(Status.UNAUTHENTICATED.withDescription("Invalid or missing token"), metadata)
+        if (jwtHeader.isNullOrEmpty()) {
+            logger.info("Missing token")
+            serverCall.close(Status.UNAUTHENTICATED.withDescription("Missing token"), metadata)
+        } else if (validateToken(jwtHeader)) {
+            logger.info("Authentication successful")
+            return nextChain.startCall(serverCall, metadata)
+        } else {
+            logger.info("Invalid token: $jwtHeader")
+            serverCall.close(Status.UNAUTHENTICATED.withDescription("Invalid token"), metadata)
         }
-        return nextChain.startCall(serverCall, metadata)
+        return object : ServerCall.Listener<ReqT>() {}
     }
 
     private fun validateToken(jwtHeader: String): Boolean {
-        val authenticationType: String = jwtHeader.split(" ")[0]
-
-        if (authenticationType != "Bearer") {
-            logger.error("Invalid Authentication type: $authenticationType")
+        val secretKey = readSecretKey()
+        secretKey?.let {
+            return try {
+                val verifier: Verifier = HMACVerifier.newVerifier(it) // Using HS256 to encode.
+                JWT.getDecoder().decode(jwtHeader, verifier)
+                return true
+            } catch (e: Exception) {
+                false
+            }
         }
-
-        return try {
-            Jwts.parser()
-                .setSigningKey(readSecretKey())
-                .parseClaimsJws(jwtHeader)
-            true
-        } catch (e: Exception) {
-            false
-        }
+            ?: logger.error("Unable to read local test secret key")
+        return false
     }
 
     // Secret key should be read from Vault, I will use vault later.
@@ -80,6 +88,6 @@ class AuthInterceptor(
 
     companion object {
         const val CLIENT_ID_HEADER = "client-id"
-        val logger: Logger = LogManager.getLogger(AuthInterceptor::class)
+        val logger: Logger = LogManager.getLogger(AuthInterceptor::class.qualifiedName)
     }
 }
