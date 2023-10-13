@@ -44,4 +44,5 @@ message UpdateAdStatusRequest {
 
 message UpdateAdStatusResponse {
   string id = 1;
+  string updatedStatus = 2;
 }
