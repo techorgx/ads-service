@@ -49,6 +49,7 @@
         <bson.version>2.3</bson.version>
         <junit.version>4.13</junit.version>
         <lombok.version>1.18.26</lombok.version>
+        <protobuf-java-util.version>3.21.5</protobuf-java-util.version>
     </properties>
 
     <dependencies>
@@ -155,6 +156,12 @@
             <artifactId>lombok</artifactId>
             <version>${lombok.version}</version>
             <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java-util</artifactId>
+            <version>${protobuf-java-util.version}</version>
         </dependency>
     </dependencies>
 
