@@ -63,7 +63,7 @@ There are a few options to run the application (from more flexible to least)
 
 ### Invoking Ads Service
 
-You can use your favourite REST client (e.g. [BloomRPC](https://formulae.brew.sh/cask/bloomrpc))
+You can use your favourite gRPC client (e.g. [BloomRPC](https://formulae.brew.sh/cask/bloomrpc))
 
 Import path in BloomRPC
 
