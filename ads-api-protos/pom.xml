@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <parent>
-        <groupId>com.techorgx.ads</groupId>
+        <groupId>com.techorgx.api</groupId>
         <artifactId>ads-service</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>

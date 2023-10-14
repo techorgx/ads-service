@@ -9,7 +9,7 @@
         <relativePath/>
     </parent>
 
-    <groupId>com.techorgx.ads</groupId>
+    <groupId>com.techorgx.api</groupId>
     <artifactId>ads-service</artifactId>
     <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
