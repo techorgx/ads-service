@@ -1,4 +1,4 @@
-package com.project.ads.util
+package com.techorgx.api.util
 
 import org.springframework.stereotype.Component
 

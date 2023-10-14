@@ -1,8 +1,8 @@
-package com.project.ads.repository
+package com.techorgx.api.repository
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper
-import com.project.ads.model.Ad
-import com.project.ads.util.AdStatus
+import com.techorgx.api.model.Ad
+import com.techorgx.api.util.AdStatus
 import io.grpc.Status
 import io.grpc.StatusException
 import org.apache.logging.log4j.LogManager

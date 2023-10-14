@@ -1,14 +1,14 @@
-package com.project.ads.service
+package com.techorgx.api.service
 
-import com.project.ads.api.v1.CreateAdRequest
-import com.project.ads.api.v1.CreateAdResponse
-import com.project.ads.api.v1.GetAdRequest
-import com.project.ads.api.v1.GetAdResponse
-import com.project.ads.api.v1.UpdateAdStatusRequest
-import com.project.ads.api.v1.UpdateAdStatusResponse
-import com.project.ads.mapper.AdMapper
-import com.project.ads.repository.AdsRepository
-import com.project.ads.util.AdStatus
+import com.techorgx.ads.api.v1.CreateAdRequest
+import com.techorgx.ads.api.v1.CreateAdResponse
+import com.techorgx.ads.api.v1.GetAdRequest
+import com.techorgx.ads.api.v1.GetAdResponse
+import com.techorgx.ads.api.v1.UpdateAdStatusRequest
+import com.techorgx.ads.api.v1.UpdateAdStatusResponse
+import com.techorgx.api.mapper.AdMapper
+import com.techorgx.api.repository.AdsRepository
+import com.techorgx.api.util.AdStatus
 import io.grpc.Status
 import io.grpc.StatusException
 import org.springframework.stereotype.Service

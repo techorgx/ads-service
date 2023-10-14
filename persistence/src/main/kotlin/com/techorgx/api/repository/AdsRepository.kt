@@ -1,7 +1,7 @@
-package com.project.ads.repository
+package com.techorgx.api.repository
 
-import com.project.ads.model.Ad
-import com.project.ads.util.AdStatus
+import com.techorgx.api.model.Ad
+import com.techorgx.api.util.AdStatus
 
 interface AdsRepository {
     fun <S : Ad?> save(entity: S): S

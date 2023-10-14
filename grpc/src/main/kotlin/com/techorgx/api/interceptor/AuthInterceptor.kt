@@ -1,4 +1,4 @@
-package com.project.ads.interceptor
+package com.techorgx.api.interceptor
 
 import io.fusionauth.jwt.Verifier
 import io.fusionauth.jwt.domain.JWT

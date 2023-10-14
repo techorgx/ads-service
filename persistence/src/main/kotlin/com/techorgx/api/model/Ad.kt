@@ -1,4 +1,4 @@
-package com.project.ads.model
+package com.techorgx.api.model
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBHashKey
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBTable

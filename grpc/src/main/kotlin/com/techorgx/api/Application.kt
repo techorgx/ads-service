@@ -1,4 +1,4 @@
-package com.project.ads
+package com.techorgx.api
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.context.properties.ConfigurationPropertiesScan
