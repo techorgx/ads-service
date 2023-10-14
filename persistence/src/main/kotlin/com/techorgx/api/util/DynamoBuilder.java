@@ -1,4 +1,4 @@
-package com.project.ads.util;
+package com.techorgx.api.util;
 
 import com.amazonaws.auth.AWSCredentialsProvider;
 import com.amazonaws.auth.AWSStaticCredentialsProvider;

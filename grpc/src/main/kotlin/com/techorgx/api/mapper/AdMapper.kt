@@ -1,7 +1,7 @@
-package com.project.ads.mapper
+package com.techorgx.api.mapper
 
-import com.project.ads.api.v1.CreateAdRequest
-import com.project.ads.model.Ad
+import com.techorgx.ads.api.v1.CreateAdRequest
+import com.techorgx.api.model.Ad
 import org.bson.types.ObjectId
 import org.springframework.stereotype.Component
 

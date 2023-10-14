@@ -4,7 +4,7 @@ package com.project.ads.api.v1;
 
 option java_multiple_files = true;
 option java_outer_classname = "AdsDataApiProto";
-option java_package = "com.project.ads.api.v1";
+option java_package = "com.techorgx.ads.api.v1";
 
 service AdsApi {
   rpc CreateAd(CreateAdRequest) returns (CreateAdResponse);
