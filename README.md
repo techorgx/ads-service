@@ -56,10 +56,13 @@ There are a few options to run the application (from more flexible to least)
     ```bash
     mvn spring-boot:run -Dspring.profiles.active=local
     ```
-
+   
 3. Package the jar file and run it
 
-  // TO-DO
+  ```bash
+  mvn clean package
+  java -jar ./target/ads-service-exec.jar --spring.profiles.active=local
+  ```
 
 ### Invoking Ads Service
 
