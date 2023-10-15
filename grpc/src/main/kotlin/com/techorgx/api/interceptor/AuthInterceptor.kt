@@ -3,6 +3,8 @@ package com.techorgx.api.interceptor
 import io.fusionauth.jwt.Verifier
 import io.fusionauth.jwt.domain.JWT
 import io.fusionauth.jwt.hmac.HMACVerifier
+import io.fusionauth.jwt.rsa.RSASigner
+import io.fusionauth.jwt.rsa.RSAVerifier
 import io.grpc.Metadata
 import io.grpc.ServerCall
 import io.grpc.ServerCallHandler
@@ -57,7 +59,7 @@ class AuthInterceptor(
         val secretKey = readSecretKey()
         secretKey?.let {
             return try {
-                val verifier: Verifier = HMACVerifier.newVerifier(it) // Using HS256 to encode.
+                val verifier: Verifier = RSAVerifier.newVerifier(it) // Used RS256 to encode.
                 JWT.getDecoder().decode(jwtHeader, verifier)
                 return true
             } catch (e: Exception) {
