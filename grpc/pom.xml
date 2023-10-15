@@ -19,6 +19,7 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <java-jwt.version>0.11.5</java-jwt.version>
         <bson.version>2.3</bson.version>
+        <maven-resources-plugin.version>3.3.1</maven-resources-plugin.version>
         <!--     jwt-->
         <fusionauth-jwt.version>5.3.0</fusionauth-jwt.version>
     </properties>
@@ -28,6 +29,11 @@
             <groupId>com.techorgx.api</groupId>
             <artifactId>ads-api-protos</artifactId>
             <version>1.0-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.techorgx.api</groupId>
+            <artifactId>persistence</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>io.fusionauth</groupId>
@@ -46,4 +52,37 @@
             <version>${bson.version}</version>
         </dependency>
     </dependencies>
+    <build>
+        <plugins>
+            <!--    creating a fat jar-->
+            <plugin>
+                <!-- to be able to handle properties like @project.name@ -->
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>${maven-resources-plugin.version}</version>
+            </plugin>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>1.5.9.RELEASE</version>
+                <configuration>
+                    <skip>false</skip>
+                </configuration>
+                <executions>
+                    <execution>
+                        <id>repackage</id>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                        <configuration>
+                            <finalName>ads-service</finalName>
+                            <outputDirectory>${project.basedir}/../target</outputDirectory>
+                            <classifier>exec</classifier>
+                            <mainClass>com.techorgx.api.ApplicationKt</mainClass>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
