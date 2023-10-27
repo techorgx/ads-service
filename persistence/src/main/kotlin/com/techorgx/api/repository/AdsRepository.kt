@@ -12,4 +12,6 @@ interface AdsRepository {
         id: String,
         status: AdStatus,
     )
+
+    fun getAdsByUser(id: String): List<Ad>
 }

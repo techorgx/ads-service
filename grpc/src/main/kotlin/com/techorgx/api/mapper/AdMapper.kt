@@ -2,6 +2,7 @@ package com.techorgx.api.mapper
 
 import com.techorgx.ads.api.v1.CreateAdRequest
 import com.techorgx.api.model.Ad
+import com.techorgx.api.util.getEnumValue
 import org.bson.types.ObjectId
 import org.springframework.stereotype.Component
 
@@ -12,7 +13,7 @@ class AdMapper {
             id = ObjectId().toString(),
             description = createAdRequest.description,
             title = createAdRequest.title,
-            status = createAdRequest.status,
+            status = getEnumValue(createAdRequest.status),
             username = createAdRequest.username,
             price = createAdRequest.price,
         )

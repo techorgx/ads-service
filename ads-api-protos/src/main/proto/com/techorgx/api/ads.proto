@@ -10,6 +10,24 @@ service AdsApi {
   rpc CreateAd(CreateAdRequest) returns (CreateAdResponse);
   rpc GetAd(GetAdRequest) returns (GetAdResponse);
   rpc UpdateAdStatus(UpdateAdStatusRequest) returns (UpdateAdStatusResponse);
+  rpc GetAdsByUser(GetAdsByUserRequest) returns (GetAdsByUserResponse);
+}
+
+message GetAdsByUserRequest {
+  string username = 1;
+}
+
+message GetAdsByUserResponse {
+  repeated Ad ads = 1;
+}
+
+message Ad {
+  string id = 1;
+  string username = 2;
+  string title = 3;
+  string description = 4;
+  string price = 5;
+  string status = 6;
 }
 
 message CreateAdRequest {

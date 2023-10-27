@@ -11,11 +11,11 @@
   ],
   "KeySchema": [
     {
-      "AttributeName": "id",
+      "AttributeName": "username",
       "KeyType": "HASH"
     },
     {
-      "AttributeName": "username",
+      "AttributeName": "id",
       "KeyType": "RANGE"
     }
   ],

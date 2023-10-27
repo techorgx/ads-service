@@ -4,11 +4,15 @@ import com.techorgx.ads.api.v1.CreateAdRequest
 import com.techorgx.ads.api.v1.CreateAdResponse
 import com.techorgx.ads.api.v1.GetAdRequest
 import com.techorgx.ads.api.v1.GetAdResponse
+import com.techorgx.ads.api.v1.GetAdsByUserRequest
+import com.techorgx.ads.api.v1.GetAdsByUserResponse
 import com.techorgx.ads.api.v1.UpdateAdStatusRequest
 import com.techorgx.ads.api.v1.UpdateAdStatusResponse
 import com.techorgx.api.mapper.AdMapper
 import com.techorgx.api.repository.AdsRepository
 import com.techorgx.api.util.AdStatus
+import com.techorgx.api.util.AdsResponseMapper
+import com.techorgx.api.util.getEnumValue
 import io.grpc.Status
 import io.grpc.StatusException
 import org.springframework.stereotype.Service
@@ -17,6 +21,7 @@ import org.springframework.stereotype.Service
 class AdsService(
     private val adsRepository: AdsRepository,
     private val adMapper: AdMapper,
+    private val adsResponseMapper: AdsResponseMapper,
 ) {
     fun createAd(request: CreateAdRequest): CreateAdResponse {
         val ad = adsRepository.save(adMapper.mapAd(request))
@@ -34,7 +39,7 @@ class AdsService(
                 .setId(it.id)
                 .setDescription(it.description)
                 .setPrice(it.price)
-                .setStatus(it.status)
+                .setStatus(getEnumValue(it.status))
                 .setUsername(it.username)
                 .build()
         } ?: throw StatusException(Status.NOT_FOUND.withDescription("Ad not found"))
@@ -45,7 +50,12 @@ class AdsService(
         return UpdateAdStatusResponse
             .newBuilder()
             .setId(request.id)
-            .setUpdatedStatus(request.status)
+            .setUpdatedStatus(getEnumValue(request.status))
             .build()
+    }
+
+    fun getAdsByUser(request: GetAdsByUserRequest): GetAdsByUserResponse {
+        val ads = adsRepository.getAdsByUser(request.username)
+        return adsResponseMapper.mapToAds(ads)
     }
 }
