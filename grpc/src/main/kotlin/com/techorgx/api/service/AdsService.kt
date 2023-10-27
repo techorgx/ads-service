@@ -33,9 +33,9 @@ class AdsService(
                 .newBuilder()
                 .setId(it.id)
                 .setDescription(it.description)
-                .setOwner(it.owner)
                 .setPrice(it.price)
                 .setStatus(it.status)
+                .setUsername(it.username)
                 .build()
         } ?: throw StatusException(Status.NOT_FOUND.withDescription("Ad not found"))
     }

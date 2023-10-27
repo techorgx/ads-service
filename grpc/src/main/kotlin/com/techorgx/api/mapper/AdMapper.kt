@@ -13,7 +13,7 @@ class AdMapper {
             description = createAdRequest.description,
             title = createAdRequest.title,
             status = createAdRequest.status,
-            owner = createAdRequest.owner,
+            username = createAdRequest.username,
             price = createAdRequest.price,
         )
     }

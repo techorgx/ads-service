@@ -16,7 +16,7 @@ message CreateAdRequest {
   string title = 1;
   string description = 2;
   double price = 3;
-  string owner = 4;
+  string username = 4;
   string status = 5;
 }
 
@@ -33,7 +33,7 @@ message GetAdResponse {
   string title = 2;
   string description = 3;
   double price = 4;
-  string owner = 5;
+  string username = 5;
   string status = 6;
 }
 
