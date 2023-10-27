@@ -2,8 +2,6 @@ package com.techorgx.api.interceptor
 
 import io.fusionauth.jwt.Verifier
 import io.fusionauth.jwt.domain.JWT
-import io.fusionauth.jwt.hmac.HMACVerifier
-import io.fusionauth.jwt.rsa.RSASigner
 import io.fusionauth.jwt.rsa.RSAVerifier
 import io.grpc.Metadata
 import io.grpc.ServerCall

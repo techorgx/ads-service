@@ -1,11 +1,13 @@
 package com.techorgx.api.repository
 
 import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBMapper
+import com.amazonaws.services.dynamodbv2.datamodeling.DynamoDBQueryExpression
 import com.techorgx.api.model.Ad
 import com.techorgx.api.util.AdStatus
 import io.grpc.Status
 import io.grpc.StatusException
 import org.apache.logging.log4j.LogManager
+import org.apache.logging.log4j.Logger
 import org.springframework.stereotype.Component
 
 @Component
@@ -42,7 +44,14 @@ class AdsRepositoryImpl(
         } ?: throw StatusException(Status.INTERNAL.withDescription("Ad can not be updated"))
     }
 
+    override fun getAdsByUser(id: String): List<Ad> {
+        val query = DynamoDBQueryExpression<Ad>()
+        val ad = Ad(username = id)
+        query.hashKeyValues = ad
+        return dynamoDBMapper.query(Ad::class.java, query)
+    }
+
     private companion object {
-        val logger = LogManager.getLogger(AdsRepositoryImpl::class.java)
+        val logger: Logger = LogManager.getLogger(AdsRepositoryImpl::class.java)
     }
 }

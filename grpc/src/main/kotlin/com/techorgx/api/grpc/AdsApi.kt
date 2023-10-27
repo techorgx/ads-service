@@ -5,6 +5,8 @@ import com.techorgx.ads.api.v1.CreateAdRequest
 import com.techorgx.ads.api.v1.CreateAdResponse
 import com.techorgx.ads.api.v1.GetAdRequest
 import com.techorgx.ads.api.v1.GetAdResponse
+import com.techorgx.ads.api.v1.GetAdsByUserRequest
+import com.techorgx.ads.api.v1.GetAdsByUserResponse
 import com.techorgx.ads.api.v1.UpdateAdStatusRequest
 import com.techorgx.ads.api.v1.UpdateAdStatusResponse
 import com.techorgx.api.service.AdsService
@@ -36,6 +38,10 @@ class AdsApi(
         return adsService.updateAdStatus(request).also {
             logger.info("updateAdStatus responded with: ${formatPayload(it)}")
         }
+    }
+
+    override suspend fun getAdsByUser(request: GetAdsByUserRequest): GetAdsByUserResponse {
+        return adsService.getAdsByUser(request)
     }
 
     private companion object {

@@ -3,12 +3,20 @@
     {
       "AttributeName": "id",
       "AttributeType": "S"
+    },
+    {
+      "AttributeName": "username",
+      "AttributeType": "S"
     }
   ],
   "KeySchema": [
     {
-      "AttributeName": "id",
+      "AttributeName": "username",
       "KeyType": "HASH"
+    },
+    {
+      "AttributeName": "id",
+      "KeyType": "RANGE"
     }
   ],
   "ProvisionedThroughput": {
