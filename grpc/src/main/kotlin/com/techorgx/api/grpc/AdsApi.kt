@@ -3,6 +3,8 @@ package com.techorgx.api.grpc
 import com.techorgx.ads.api.v1.AdsApiGrpcKt
 import com.techorgx.ads.api.v1.CreateAdRequest
 import com.techorgx.ads.api.v1.CreateAdResponse
+import com.techorgx.ads.api.v1.DeleteAdRequest
+import com.techorgx.ads.api.v1.DeleteAdResponse
 import com.techorgx.ads.api.v1.GetAdRequest
 import com.techorgx.ads.api.v1.GetAdResponse
 import com.techorgx.ads.api.v1.GetAdsByUserRequest
@@ -41,7 +43,17 @@ class AdsApi(
     }
 
     override suspend fun getAdsByUser(request: GetAdsByUserRequest): GetAdsByUserResponse {
-        return adsService.getAdsByUser(request)
+        logger.info("Received request on getAdsByUser: ${formatPayload(request)}")
+        return adsService.getAdsByUser(request).also {
+            logger.info("getAdsByUser responded with: ${formatPayload(it)}")
+        }
+    }
+
+    override suspend fun deleteAd(request: DeleteAdRequest): DeleteAdResponse {
+        logger.info("Received request on deleteAd: ${formatPayload(request)}")
+        return adsService.deleteAd(request).also {
+            logger.info("deleteAd responded with: ${formatPayload(it)}")
+        }
     }
 
     private companion object {
