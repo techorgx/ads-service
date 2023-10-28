@@ -24,9 +24,13 @@ class AdsRepositoryImpl(
         return entity
     }
 
-    override fun findById(id: String): Ad? {
+    override fun findById(
+        id: String,
+        username: String,
+    ): Ad? {
+        val ad = Ad(id = id, username = username)
         try {
-            return dynamoDBMapper.load(Ad::class.java, id)
+            return dynamoDBMapper.load(ad)
         } catch (e: Exception) {
             logger.error(e)
         }
@@ -36,19 +40,32 @@ class AdsRepositoryImpl(
     override fun updateAdStatus(
         id: String,
         status: AdStatus,
+        username: String,
     ) {
-        val ad = findById(id)
+        val ad = findById(id = id, username = username)
         ad?.let {
             it.status = status.name
             save(ad)
         } ?: throw StatusException(Status.INTERNAL.withDescription("Ad can not be updated"))
     }
 
-    override fun getAdsByUser(id: String): List<Ad> {
+    override fun getAdsByUser(username: String): List<Ad> {
         val query = DynamoDBQueryExpression<Ad>()
-        val ad = Ad(username = id)
+        val ad = Ad(username = username)
         query.hashKeyValues = ad
         return dynamoDBMapper.query(Ad::class.java, query)
+    }
+
+    override fun deleteAd(
+        id: String,
+        username: String,
+    ) {
+        val ad = Ad(id = id, username = username)
+        try {
+            dynamoDBMapper.delete(ad)
+        } catch (e: Exception) {
+            println(e)
+        }
     }
 
     private companion object {

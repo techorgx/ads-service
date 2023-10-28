@@ -11,6 +11,15 @@ service AdsApi {
   rpc GetAd(GetAdRequest) returns (GetAdResponse);
   rpc UpdateAdStatus(UpdateAdStatusRequest) returns (UpdateAdStatusResponse);
   rpc GetAdsByUser(GetAdsByUserRequest) returns (GetAdsByUserResponse);
+  rpc DeleteAd(DeleteAdRequest) returns (DeleteAdResponse);
+}
+
+message DeleteAdRequest {
+  string id = 1;
+  string username = 2;
+}
+
+message DeleteAdResponse {
 }
 
 message GetAdsByUserRequest {
@@ -44,6 +53,7 @@ message CreateAdResponse {
 
 message GetAdRequest {
   string id = 1;
+  string username = 2;
 }
 
 message GetAdResponse {
@@ -58,9 +68,11 @@ message GetAdResponse {
 message UpdateAdStatusRequest {
   string id = 1;
   string status = 2;
+  string username = 3;
 }
 
 message UpdateAdStatusResponse {
   string id = 1;
   string updatedStatus = 2;
+  string username = 3;
 }

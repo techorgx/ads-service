@@ -2,6 +2,8 @@ package com.techorgx.api.service
 
 import com.techorgx.ads.api.v1.CreateAdRequest
 import com.techorgx.ads.api.v1.CreateAdResponse
+import com.techorgx.ads.api.v1.DeleteAdRequest
+import com.techorgx.ads.api.v1.DeleteAdResponse
 import com.techorgx.ads.api.v1.GetAdRequest
 import com.techorgx.ads.api.v1.GetAdResponse
 import com.techorgx.ads.api.v1.GetAdsByUserRequest
@@ -32,7 +34,7 @@ class AdsService(
     }
 
     fun getAd(request: GetAdRequest): GetAdResponse {
-        val ad = adsRepository.findById(request.id)
+        val ad = adsRepository.findById(request.id, request.username)
         ad?.let {
             return GetAdResponse
                 .newBuilder()
@@ -41,17 +43,24 @@ class AdsService(
                 .setPrice(it.price)
                 .setStatus(getEnumValue(it.status))
                 .setUsername(it.username)
+                .setTitle(it.title)
                 .build()
         } ?: throw StatusException(Status.NOT_FOUND.withDescription("Ad not found"))
     }
 
     fun updateAdStatus(request: UpdateAdStatusRequest): UpdateAdStatusResponse {
-        adsRepository.updateAdStatus(request.id, AdStatus.valueOf(request.status))
+        adsRepository.updateAdStatus(request.id, AdStatus.valueOf(request.status), request.username)
         return UpdateAdStatusResponse
             .newBuilder()
             .setId(request.id)
             .setUpdatedStatus(getEnumValue(request.status))
+            .setUsername(request.username)
             .build()
+    }
+
+    fun deleteAd(request: DeleteAdRequest): DeleteAdResponse {
+        adsRepository.deleteAd(request.id, request.username)
+        return DeleteAdResponse.getDefaultInstance()
     }
 
     fun getAdsByUser(request: GetAdsByUserRequest): GetAdsByUserResponse {
