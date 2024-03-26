@@ -7,6 +7,10 @@
     {
       "AttributeName": "username",
       "AttributeType": "S"
+    },
+    {
+      "AttributeName": "location",
+      "AttributeType": "S"
     }
   ],
   "KeySchema": [
@@ -17,6 +21,24 @@
     {
       "AttributeName": "id",
       "KeyType": "RANGE"
+    }
+  ],
+  "GlobalSecondaryIndexes": [
+    {
+      "IndexName": "LocationIndex",
+      "KeySchema": [
+        {
+          "AttributeName": "location",
+          "KeyType": "HASH"
+        }
+      ],
+      "Projection": {
+        "ProjectionType": "ALL"
+      },
+      "ProvisionedThroughput": {
+        "ReadCapacityUnits": 5,
+        "WriteCapacityUnits": 5
+      }
     }
   ],
   "ProvisionedThroughput": {

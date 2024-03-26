@@ -53,7 +53,12 @@ class AdsRepositoryImpl(
         val query = DynamoDBQueryExpression<Ad>()
         val ad = Ad(username = username)
         query.hashKeyValues = ad
-        return dynamoDBMapper.query(Ad::class.java, query)
+        try {
+            return dynamoDBMapper.query(Ad::class.java, query)
+        } catch (e: Exception) {
+            logger.error(e)
+            throw StatusException(Status.INTERNAL.withDescription("Ad can not be fetched"))
+        }
     }
 
     override fun deleteAd(
@@ -65,6 +70,19 @@ class AdsRepositoryImpl(
             dynamoDBMapper.delete(ad)
         } catch (e: Exception) {
             println(e)
+        }
+    }
+
+    override fun getAdsByLocation(location: String): List<Ad> {
+        val query = DynamoDBQueryExpression<Ad>()
+        val ad = Ad(location = location)
+        println(ad)
+        query.hashKeyValues = ad
+        try {
+            return dynamoDBMapper.query(Ad::class.java, query)
+        } catch (e: Exception) {
+            logger.error(e)
+            throw StatusException(Status.INTERNAL.withDescription("Ads can not be fetched"))
         }
     }
 

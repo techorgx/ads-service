@@ -15,4 +15,5 @@ data class Ad(
     var description: String = "",
     var price: Double = 0.0,
     var status: String = AdStatus.CLOSED.toString(),
+    var location: String = "",
 )

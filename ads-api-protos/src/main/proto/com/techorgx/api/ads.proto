@@ -38,6 +38,7 @@ message Ad {
   string description = 4;
   string price = 5;
   string status = 6;
+  string location = 7;
 }
 
 message CreateAdRequest {
@@ -46,6 +47,7 @@ message CreateAdRequest {
   double price = 3;
   string username = 4;
   string status = 5;
+  string location = 7;
 }
 
 message CreateAdResponse {
@@ -64,18 +66,21 @@ message GetAdResponse {
   double price = 4;
   string username = 5;
   string status = 6;
+  string location = 7;
 }
 
 message UpdateAdStatusRequest {
   string id = 1;
   string status = 2;
   string username = 3;
+  string location = 7;
 }
 
 message UpdateAdStatusResponse {
   string id = 1;
   string updatedStatus = 2;
   string username = 3;
+  string location = 7;
 }
 
 message GetAdsByLocationRequest {
@@ -83,5 +88,5 @@ message GetAdsByLocationRequest {
 }
 
 message GetAdsByLocationResponse {
-  repeated GetAdResponse ads = 1;
+  repeated Ad ads = 1;
 }

@@ -16,6 +16,21 @@ class AdMapper {
             status = getEnumValue(createAdRequest.status),
             username = createAdRequest.username,
             price = createAdRequest.price,
+            location = createAdRequest.location,
         )
+    }
+
+    fun mapAdsToProto(ads: List<Ad>): List<com.techorgx.ads.api.v1.Ad> {
+        return ads.map {
+            com.techorgx.ads.api.v1.Ad.newBuilder()
+                .setUsername(it.username)
+                .setId(it.id)
+                .setStatus(getEnumValue(it.status))
+                .setDescription(it.description)
+                .setPrice(it.price.toString())
+                .setTitle(it.title)
+                .setLocation(it.location)
+                .build()
+        }
     }
 }

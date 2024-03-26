@@ -23,4 +23,6 @@ interface AdsRepository {
         id: String,
         username: String,
     )
+
+    fun getAdsByLocation(location: String): List<Ad>
 }
