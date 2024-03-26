@@ -6,6 +6,8 @@ import com.techorgx.ads.api.v1.DeleteAdRequest
 import com.techorgx.ads.api.v1.DeleteAdResponse
 import com.techorgx.ads.api.v1.GetAdRequest
 import com.techorgx.ads.api.v1.GetAdResponse
+import com.techorgx.ads.api.v1.GetAdsByLocationRequest
+import com.techorgx.ads.api.v1.GetAdsByLocationResponse
 import com.techorgx.ads.api.v1.GetAdsByUserRequest
 import com.techorgx.ads.api.v1.GetAdsByUserResponse
 import com.techorgx.ads.api.v1.UpdateAdStatusRequest
@@ -66,5 +68,10 @@ class AdsService(
     fun getAdsByUser(request: GetAdsByUserRequest): GetAdsByUserResponse {
         val ads = adsRepository.getAdsByUser(request.username)
         return adsResponseMapper.mapToAds(ads)
+    }
+
+    fun getAdsByLocation(request: GetAdsByLocationRequest): GetAdsByLocationResponse {
+        val location = request.location
+        return GetAdsByLocationResponse.getDefaultInstance()
     }
 }

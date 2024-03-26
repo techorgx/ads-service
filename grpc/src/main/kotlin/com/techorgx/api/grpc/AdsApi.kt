@@ -7,6 +7,8 @@ import com.techorgx.ads.api.v1.DeleteAdRequest
 import com.techorgx.ads.api.v1.DeleteAdResponse
 import com.techorgx.ads.api.v1.GetAdRequest
 import com.techorgx.ads.api.v1.GetAdResponse
+import com.techorgx.ads.api.v1.GetAdsByLocationRequest
+import com.techorgx.ads.api.v1.GetAdsByLocationResponse
 import com.techorgx.ads.api.v1.GetAdsByUserRequest
 import com.techorgx.ads.api.v1.GetAdsByUserResponse
 import com.techorgx.ads.api.v1.UpdateAdStatusRequest
@@ -53,6 +55,13 @@ class AdsApi(
         logger.info("Received request on deleteAd: ${formatPayload(request)}")
         return adsService.deleteAd(request).also {
             logger.info("deleteAd responded with: ${formatPayload(it)}")
+        }
+    }
+
+    override suspend fun getAdsByLocation(request: GetAdsByLocationRequest): GetAdsByLocationResponse {
+        logger.info("Received request on getAdsByLocation: ${formatPayload(request)}")
+        return adsService.getAdsByLocation(request).also {
+            logger.info("getAdsByLocation responded with: ${formatPayload(it)}")
         }
     }
 
