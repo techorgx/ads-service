@@ -13,9 +13,9 @@ import com.techorgx.ads.api.v1.GetAdsByUserResponse
 import com.techorgx.ads.api.v1.UpdateAdStatusRequest
 import com.techorgx.ads.api.v1.UpdateAdStatusResponse
 import com.techorgx.api.mapper.AdMapper
+import com.techorgx.api.mapper.AdsResponseMapper
 import com.techorgx.api.repository.AdsRepository
 import com.techorgx.api.util.AdStatus
-import com.techorgx.api.util.AdsResponseMapper
 import com.techorgx.api.util.getEnumValue
 import io.grpc.Status
 import io.grpc.StatusException
@@ -72,6 +72,9 @@ class AdsService(
 
     fun getAdsByLocation(request: GetAdsByLocationRequest): GetAdsByLocationResponse {
         val location = request.location
-        return GetAdsByLocationResponse.getDefaultInstance()
+        val ads = adsRepository.getAdsByLocation(location)
+        return GetAdsByLocationResponse.newBuilder()
+            .addAllAds(adMapper.mapAdsToProto(ads))
+            .build()
     }
 }

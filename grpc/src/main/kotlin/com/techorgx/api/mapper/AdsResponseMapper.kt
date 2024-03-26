@@ -1,7 +1,8 @@
-package com.techorgx.api.util
+package com.techorgx.api.mapper
 
 import com.techorgx.ads.api.v1.GetAdsByUserResponse
 import com.techorgx.api.model.Ad
+import com.techorgx.api.util.getEnumValue
 import org.springframework.stereotype.Component
 import com.techorgx.ads.api.v1.Ad as AdResponse
 
@@ -19,6 +20,7 @@ class AdsResponseMapper {
                     .setDescription(it.description)
                     .setPrice(it.price.toString())
                     .setTitle(it.title)
+                    .setLocation(it.location)
                     .build(),
             )
         }
